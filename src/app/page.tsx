@@ -19,7 +19,7 @@ export default function Home() {
 
     <h2>
       Patrimoine et Maintenance accompagne les mairies,
-      collectivités locales, écoles, salles des fêtes
+      collectivités locales, écoles, salles des fêtes , parc immobilier
       et bâtiments publics dans leurs travaux de maintenance,
       dépannage et entretien technique.
     </h2>
