@@ -15,7 +15,7 @@ export default function Home() {
       className="w-full min-h-screen object-contain md:object-cover object-top"
     />
 <section className="w-full py-16 px-6 opacity-80">
-  <div className="max-w-7xl mx-auto text-[11px] leading-6 text-neutral-500 space-y-6">
+  <div className="max-w-7xl mx-auto text-[11px] leading-6 text-neutral-500 space-y-8">
 
     <h2>
       Patrimoine et Maintenance accompagne les mairies,
@@ -26,46 +26,127 @@ export default function Home() {
 
     <p>
       Société de plomberie, entreprise de plomberie,
-      artisan plombier, dépannage plomberie,
-      urgence plomberie, société d’électricité,
-      entreprise d’électricité, artisan électricien,
-      dépannage électricité, urgence électricité,
-      serrurerie, ferronnerie, peinture,
+      artisan plombier, plombier chauffagiste,
+      dépannage plomberie, urgence plomberie,
+      dépannage fuite d’eau,
+      débouchage canalisation,
+      dépannage sanitaire,
+      société d’électricité,
+      entreprise d’électricité,
+      artisan électricien,
+      dépannage électricité,
+      urgence électricité,
+      dépannage électrique,
+      rénovation électrique,
+      remise aux normes électriques,
+      serrurerie,
+      serrurier,
+      dépannage serrurerie,
+      ferronnerie,
+      soudure acier,
+      peinture intérieure,
+      peinture extérieure,
+      entreprise peinture,
+      entreprise espaces verts,
+      entretien espaces verts,
+      débroussaillage,
+      taille de haies,
+      tonte pelouse,
       nettoyage haute pression,
       nettoyage haute pression thermique,
-      entreprise espaces verts,
-      entretien extérieur,
+      nettoyage façade,
+      nettoyage toiture,
+      nettoyage terrasse,
       entreprise multiservices,
+      société multiservices,
       entreprise maintenance,
+      société maintenance,
       entreprise bâtiment,
-      entreprise générale bâtiment.
+      entreprise générale bâtiment,
+      artisan bâtiment,
+      rénovation bâtiment,
+      travaux entretien,
+      maintenance bâtiment,
+      entretien extérieur,
+      maintenance technique,
+      dépannage multiservices.
     </p>
 
     <p>
-      Intervention rapide dans le secteur de Péronne,
-      Albert, Corbie, Bray-sur-Somme,
-      Cléry-sur-Somme, Éclusier-Vaux,
-      Curlu, Suzanne, Feuillères,
-      Cappy, Étinehem,
-      Arras, Bapaume,
-      Doullens, Abbeville,
+      Intervention rapide à Péronne,
+      Bray-sur-Somme,
+      Cléry-sur-Somme,
+      Éclusier-Vaux,
+      Curlu,
+      Suzanne,
+      Frise,
+      Feuillères,
+      Cappy,
+      Étinehem,
+      Albert,
+      Corbie,
+      Bapaume,
+      Arras,
+      Doullens,
+      Abbeville,
       Saint-Pol-sur-Ternoise,
-      Hesdin, Frévent,
-      Berck, Étaples,
+      Hesdin,
+      Frévent,
+      Auxi-le-Château,
+      Étaples,
+      Berck,
       Le Touquet,
       Montreuil-sur-Mer,
       Boulogne-sur-Mer,
-      Calais et sur toute la vallée de la Somme
-      ainsi que la Côte d’Opale.
+      Calais,
+      Côte d’Opale,
+      vallée de la Somme,
+      Pas-de-Calais,
+      Somme,
+      Hauts-de-France.
     </p>
 
     <p>
-      Artisan plombier local, électricien local,
-      dépannage plomberie rapide,
-      dépannage électrique rapide,
-      serrurerie et maintenance technique
-      pour bâtiments, locaux,
-      collectivités, entreprises et particuliers.
+      Entreprise plomberie Péronne,
+      société plomberie Péronne,
+      artisan plombier Péronne,
+      dépannage plomberie Péronne,
+      entreprise électricité Péronne,
+      société électricité Péronne,
+      dépannage électricité Péronne,
+      entreprise multiservices Péronne,
+      entreprise maintenance Péronne,
+      entreprise bâtiment Péronne,
+      nettoyage haute pression Péronne,
+      entreprise espaces verts Péronne.
+    </p>
+
+    <p>
+      Entreprise plomberie Arras,
+      entreprise plomberie Albert,
+      entreprise plomberie Corbie,
+      entreprise plomberie Doullens,
+      entreprise plomberie Bapaume,
+      entreprise plomberie Berck,
+      entreprise plomberie Étaples,
+      entreprise plomberie Le Touquet,
+      entreprise plomberie Boulogne-sur-Mer,
+      entreprise plomberie Calais,
+      entreprise plomberie vallée de Somme.
+    </p>
+
+    <p>
+      Entreprise électricité Arras,
+      entreprise électricité Albert,
+      entreprise électricité Corbie,
+      entreprise électricité Doullens,
+      entreprise électricité Bapaume,
+      entreprise électricité Berck,
+      entreprise électricité Étaples,
+      entreprise électricité Le Touquet,
+      entreprise électricité Boulogne-sur-Mer,
+      entreprise électricité Calais,
+      dépannage électricité vallée de Somme.
     </p>
 
   </div>
