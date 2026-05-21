@@ -4,69 +4,172 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+const ROUTES = {
+  accueil: "/",
+  formules: "/formules",
+  interventions: "/interventions",
+  zoneIntervention: "/zone-intervention",
+  espaceCollectivite: "/gestion-connectee",
+  contact: "/contact",
+} as const;
+
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { href: "/", label: "Accueil" },
-    { href: "/interventions", label: "Interventions" },
-    { href: "/formules", label: "Formules" },
-    { href: "/gestion-connectee", label: "Gestion connectée" },
-    { href: "/zone-intervention", label: "Zone d’intervention" },
-    { href: "/contact", label: "Contact" },
+    { href: ROUTES.accueil, label: "Accueil" },
+    { href: ROUTES.interventions, label: "Interventions" },
+    { href: ROUTES.formules, label: "Formules" },
+    { href: ROUTES.espaceCollectivite, label: "Gestion connectée" },
+    { href: ROUTES.zoneIntervention, label: "Zone d'intervention" },
+    { href: ROUTES.contact, label: "Contact" },
+  ];
+
+  const mobileRow1Links = [
+    { href: ROUTES.accueil, label: "Accueil" },
+    { href: ROUTES.interventions, label: "Interventions" },
+    { href: ROUTES.formules, label: "Formules" },
+    { href: ROUTES.zoneIntervention, label: "Zone intervention" },
   ];
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-[9999] bg-black/20 backdrop-blur-md">
-
-        <div className="flex items-center justify-between px-4 py-1">
-
-          
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="px-4 py-2 rounded-full bg-gradient-to-b from-cyan-300 via-blue-500 to-blue-900 border border-orange-200 text-white text-sm md:text-base font-semibold shadow-xl"
-          >
-            ☰ Menu
-          </button>
-
-        </div>
-
-        {menuOpen && (
-         <nav className="flex flex-col items-center gap-3 px-4 pb-6 pt-4 mx-4 rounded-3xl bg-transparent backdrop-blur-2xl border border-cyan-400/20 shadow-[0_0_30px_rgba(0,180,255,0.15)]">
-
-            {links.map((link) => {
-              const isActive = pathname === link.href;
+      {/* ——— Mobile iPhone : navigation directe ——— */}
+      <header className="mobile-navbar fixed top-0 left-0 w-full z-[999999] md:hidden">
+        <nav
+          className="mobile-nav-bar"
+          role="navigation"
+          aria-label="Navigation mobile"
+        >
+          <div className="mobile-nav-row-1">
+            {mobileRow1Links.map((item) => {
+              const isActive = pathname === item.href;
 
               return (
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className={`
-                    w-full max-w-sm text-center
-                    px-4 py-3 rounded-full
-                    text-white text-sm md:text-base font-semibold
-                    transition-all duration-300
-                    border shadow-xl
-                    ${
-                      isActive
-                        ? "bg-gradient-to-b from-orange-300 via-orange-500 to-orange-700 border-cyan-200"
-                        : "bg-gradient-to-b from-cyan-300 via-blue-500 to-blue-900 border-orange-200"
-                    }
-                  `}
+                  key={item.href}
+                  href={item.href}
+                  className={
+                    isActive
+                      ? "mobile-nav-btn mobile-nav-btn--orange"
+                      : "mobile-nav-btn"
+                  }
                 >
-                  {link.label}
+                  {item.label}
                 </Link>
               );
             })}
+          </div>
 
-          </nav>
-        )}
+          <div className="mobile-nav-row-2">
+            <Link
+              href={ROUTES.contact}
+              className={
+                pathname === ROUTES.contact
+                  ? "mobile-nav-btn mobile-nav-btn--orange"
+                  : "mobile-nav-btn"
+              }
+            >
+              Contact
+            </Link>
+            <Link
+              href={ROUTES.espaceCollectivite}
+              className="mobile-nav-btn mobile-nav-btn--orange"
+            >
+              Espace collectivité
+            </Link>
+          </div>
+        </nav>
       </header>
 
-      <div className="h-20"></div>
+      {/* ——— Desktop : navbar premium ——— */}
+      <header className="desktop-header hidden md:block fixed top-0 inset-x-0 z-[9999]">
+        <div className="desktop-header-inner">
+          <div className="desktop-header-bar">
+            <Link href={ROUTES.accueil} className="desktop-brand">
+              Patrimoine <span>& Maintenance</span>
+            </Link>
+
+            <nav className="desktop-nav-inline" aria-label="Navigation principale">
+              {links.map((link) => {
+                const isActive = pathname === link.href;
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={
+                      isActive
+                        ? "desktop-nav-link desktop-nav-link--active"
+                        : "desktop-nav-link"
+                    }
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <Link
+              href={ROUTES.espaceCollectivite}
+              className="desktop-nav-cta"
+            >
+              Espace collectivité
+            </Link>
+
+            <button
+              type="button"
+              aria-expanded={menuOpen}
+              aria-controls="desktop-menu-panel"
+              aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              onClick={() => setMenuOpen((open) => !open)}
+              className="desktop-menu-trigger"
+            >
+              <span className="desktop-menu-icon" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+              <span>Menu</span>
+            </button>
+          </div>
+
+          {menuOpen && (
+            <nav
+              id="desktop-menu-panel"
+              className="desktop-menu-panel"
+              aria-label="Menu de navigation"
+            >
+              {links.map((link) => {
+                const isActive = pathname === link.href;
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={
+                      isActive
+                        ? "desktop-menu-link desktop-menu-link--active"
+                        : "desktop-menu-link"
+                    }
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <Link
+                href={ROUTES.espaceCollectivite}
+                onClick={() => setMenuOpen(false)}
+                className="desktop-menu-link desktop-menu-link--cta"
+              >
+                Espace collectivité
+              </Link>
+            </nav>
+          )}
+        </div>
+      </header>
     </>
   );
 }

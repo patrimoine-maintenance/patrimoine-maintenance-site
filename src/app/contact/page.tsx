@@ -1,6 +1,8 @@
+import MobileCta from "@/components/MobileCta";
+
 export default function ContactPage() {
   return (
-   <div className="relative w-full bg-white">
+   <div className="hero-section relative w-full bg-white">
 
       {/* IMAGE */}
       <img
@@ -32,6 +34,8 @@ export default function ContactPage() {
         href="tel:+33631951877"
         className="absolute top-[67%] left-[23%] w-[18%] h-[4%] z-50"
       />
+
+      <MobileCta />
 
     </div>
   );

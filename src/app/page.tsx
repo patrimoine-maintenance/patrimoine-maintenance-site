@@ -1,10 +1,8 @@
 import Image from "next/image";
-import Navbar from "../components/Navbar";
+
 export default function Home() {
  return (
-  <main className="relative min-h-screen bg-black overflow-hidden">
-
-    <Navbar />
+  <main className="hero-section relative min-h-screen bg-black overflow-hidden max-md:min-h-0 max-md:bg-transparent max-md:overflow-visible max-md:pt-0 max-md:mt-0">
 
     <Image
       src="/images/accueil.webp"
@@ -14,7 +12,7 @@ export default function Home() {
       priority
       className="w-full min-h-screen object-contain md:object-cover object-top"
     />
-<section className="w-full py-16 px-6 opacity-80">
+<section className="seo-hidden-content w-full py-16 px-6 opacity-80">
   <div className="max-w-7xl mx-auto text-[11px] leading-6 text-neutral-500 space-y-8">
 
     <h2>

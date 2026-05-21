@@ -1,8 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import Navbar from "../../components/Navbar";
-
-
 export const metadata = {
   title: "Formules de maintenance collectivités | Patrimoine Maintenance",
   description:
@@ -11,8 +8,7 @@ export const metadata = {
 
 export default function Formules() {
   return (
-  <main className="relative w-full min-h-screen overflow-x-hidden bg-black">
-    <Navbar />
+  <main className="hero-section relative w-full min-h-screen overflow-x-hidden bg-black max-md:min-h-0 max-md:bg-transparent max-md:overflow-visible max-md:pt-0 max-md:mt-0">
    <div className="-mt-25"></div>
 <div className="relative w-screen">
 

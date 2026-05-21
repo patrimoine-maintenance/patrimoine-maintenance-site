@@ -1,10 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import Navbar from "../../components/Navbar";
 export default function ZoneIntervention() {
   return (
-    <main className="relative min-h-screen bg-black">
-<Navbar />
+    <main className="hero-section relative min-h-screen bg-black max-md:min-h-0 max-md:bg-transparent max-md:overflow-visible max-md:pt-0 max-md:mt-0">
       
 
      
