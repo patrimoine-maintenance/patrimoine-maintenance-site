@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ROUTES = {
   accueil: "/",
@@ -13,9 +13,24 @@ const ROUTES = {
   contact: "/contact",
 } as const;
 
+const MOBILE_MENU_TOGGLE_ID = "mobile-menu-toggle";
+
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      document.body.classList.remove("mobile-menu-open");
+      return;
+    }
+
+    document.body.classList.add("mobile-menu-open");
+    return () => document.body.classList.remove("mobile-menu-open");
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
   const links = [
     { href: ROUTES.accueil, label: "Accueil" },
@@ -26,61 +41,100 @@ export default function Navbar() {
     { href: ROUTES.contact, label: "Contact" },
   ];
 
-  const mobileRow1Links = [
-    { href: ROUTES.accueil, label: "Accueil" },
-    { href: ROUTES.interventions, label: "Interventions" },
-    { href: ROUTES.formules, label: "Formules" },
-    { href: ROUTES.zoneIntervention, label: "Zone intervention" },
-  ];
-
   return (
     <>
-      {/* ——— Mobile iPhone : navigation directe ——— */}
-      <header className="mobile-navbar fixed top-0 left-0 w-full z-[999999] md:hidden">
-        <nav
-          className="mobile-nav-bar"
-          role="navigation"
-          aria-label="Navigation mobile"
-        >
-          <div className="mobile-nav-row-1">
-            {mobileRow1Links.map((item) => {
-              const isActive = pathname === item.href;
+      {/* ——— Mobile iPhone : navbar premium ——— */}
+      <header className="mobile-header md:hidden">
+        <input
+          type="checkbox"
+          id={MOBILE_MENU_TOGGLE_ID}
+          className="mobile-menu-check"
+          checked={mobileMenuOpen}
+          onChange={(event) => setMobileMenuOpen(event.target.checked)}
+          tabIndex={-1}
+          aria-hidden="true"
+        />
+
+        <div className="mobile-header-inner">
+          <div className="mobile-header-bar">
+            <Link href={ROUTES.accueil} className="mobile-brand">
+              Patrimoine <span>& Maintenance</span>
+            </Link>
+
+            <div className="mobile-header-actions">
+              <Link
+                href={ROUTES.espaceCollectivite}
+                className="mobile-nav-cta"
+                onClick={closeMobileMenu}
+              >
+                Espace collectivité
+              </Link>
+
+              <label
+                htmlFor={MOBILE_MENU_TOGGLE_ID}
+                className="mobile-menu-trigger"
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu-panel"
+                role="button"
+              >
+                <span className="mobile-menu-icon" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+                <span>Menu</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div className="mobile-menu-layer" role="presentation">
+          <label
+            htmlFor={MOBILE_MENU_TOGGLE_ID}
+            className="mobile-menu-backdrop"
+            aria-label="Fermer le menu"
+            onClick={closeMobileMenu}
+          />
+          <nav
+            id="mobile-menu-panel"
+            className="mobile-menu-overlay"
+            aria-label="Menu de navigation"
+          >
+            <label
+              htmlFor={MOBILE_MENU_TOGGLE_ID}
+              className="mobile-menu-close"
+              role="button"
+              onClick={closeMobileMenu}
+            >
+              Fermer
+            </label>
+            {links.map((link) => {
+              const isActive = pathname === link.href;
 
               return (
                 <Link
-                  key={item.href}
-                  href={item.href}
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMobileMenu}
                   className={
                     isActive
-                      ? "mobile-nav-btn mobile-nav-btn--orange"
-                      : "mobile-nav-btn"
+                      ? "mobile-menu-link mobile-menu-link--active"
+                      : "mobile-menu-link"
                   }
                 >
-                  {item.label}
+                  {link.label}
                 </Link>
               );
             })}
-          </div>
-
-          <div className="mobile-nav-row-2">
-            <Link
-              href={ROUTES.contact}
-              className={
-                pathname === ROUTES.contact
-                  ? "mobile-nav-btn mobile-nav-btn--orange"
-                  : "mobile-nav-btn"
-              }
-            >
-              Contact
-            </Link>
             <Link
               href={ROUTES.espaceCollectivite}
-              className="mobile-nav-btn mobile-nav-btn--orange"
+              onClick={closeMobileMenu}
+              className="mobile-menu-link mobile-menu-link--cta"
             >
               Espace collectivité
             </Link>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </header>
 
       {/* ——— Desktop : navbar premium ——— */}
@@ -111,10 +165,7 @@ export default function Navbar() {
               })}
             </nav>
 
-            <Link
-              href={ROUTES.espaceCollectivite}
-              className="desktop-nav-cta"
-            >
+            <Link href={ROUTES.espaceCollectivite} className="desktop-nav-cta">
               Espace collectivité
             </Link>
 
